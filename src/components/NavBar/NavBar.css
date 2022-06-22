@@ -27,3 +27,9 @@ ul {
     color: white;
     background-color: #04AA6D;
   }
+
+  .cart {
+    margin-top: 1%;
+    display: flex;
+    color: #2A5A33;
+}
