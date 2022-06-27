@@ -1,0 +1,55 @@
+.count-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  .count-container-contador {
+    display: grid;
+    grid-template: 1fr / 1fr 1fr 1fr;
+    width: 140px;
+    height: 50px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+  
+  .count-container-button {
+    color: #04AA6D;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--border-color);
+    font-size: 12px;
+    transition: all 250ms ease-out;
+  }
+  
+  .count-container-button:hover {
+    border: none;
+    color: var(--just-white);
+    background-color: var(--primary-color);
+  }
+  
+  .count-container-button[disabled] {
+    color: #04AA6D;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+  }
+  
+  .count-container__qty {
+    text-align: center;
+    height: 100%;
+    padding-top: 10px;
+    color: #04AA6D;
+    background-color: var(--just-white);
+  }
+  .button-primary {
+    color:#04AA6D;
+    border: double;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    
+  }
