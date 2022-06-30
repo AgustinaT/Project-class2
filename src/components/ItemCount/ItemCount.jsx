@@ -25,7 +25,7 @@ const ItemCount = ({ onAdd }) => {
           <button
             className="count-container-button"
             onClick={() => addProduct(+1)}
-            disabled={contador === stock ? true : null}
+            disabled={contador === stock ? true : null} //puedo poner el alert aca? alert('stock maximo permitido ${stock}')
           > + </button>
         </div>
   
@@ -33,7 +33,7 @@ const ItemCount = ({ onAdd }) => {
           className="button-primary"
           onClick={() => onAdd(contador)}
           disabled={stock === 0 ? true : null}
-        >Añadir al carrito</button>
+        >Añadir al carrito</button> 
       </div>
     );
   };

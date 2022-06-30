@@ -1,0 +1,16 @@
+.card {
+    background-color: #C0E8B6;
+    width: 100%;
+}
+
+/*.Item{
+    width: '18rem';
+}*/
+
+.imagenes{
+    overflow: hidden;
+}
+
+.btn {
+    font-size: 14px !important;
+}

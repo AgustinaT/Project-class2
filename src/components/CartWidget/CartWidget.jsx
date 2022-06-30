@@ -1,9 +1,11 @@
 import React from 'react';
 import { HiShoppingCart } from 'react-icons/hi';
 
-export const CartWidget = () => {
+export const CartWidget = ({value}) => {
   return (
-    <HiShoppingCart size= {18}/>
+    <div>
+      <HiShoppingCart size= {18}/> <span>{value}</span>
+      </div>  
   )
     
 }
