@@ -1,5 +1,5 @@
 .card {
-    background-color: #C0E8B6;
+    background-color: #E3EEBE !important;
     width: 100%;
 }
 
@@ -14,3 +14,24 @@
 .btn {
     font-size: 14px !important;
 }
+
+.imagenes{
+    overflow: hidden; /*Si se sale de los limites del contenido*/
+    display:flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%
+}
+/* agregue 100% para q cubran todo el alto y el ancho del div*/
+.imagenes > img {
+    width: 100%;
+    height:100%;
+}
+
+@media only screen and (max-width: 1024px) {
+    .card-descripcion {
+    width: auto;
+    height: 200px;
+    }
+}
+

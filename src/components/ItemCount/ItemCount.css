@@ -16,22 +16,23 @@
   }
   
   .count-container-button {
-    color: #04AA6D;
+    background-color: #E3EEBE;
+    color: #181b1a;
     width: 100%;
     height: 100%;
     border: 1px solid var(--border-color);
-    font-size: 12px;
+    font-size: 16px;
     transition: all 250ms ease-out;
   }
   
   .count-container-button:hover {
     border: none;
     color: var(--just-white);
-    background-color: var(--primary-color);
+    background-color: #949F6F;
   }
   
   .count-container-button[disabled] {
-    color: #04AA6D;
+    color: #181b1a;
     background-color: transparent;
     border: 1px solid var(--border-color);
   }
@@ -40,7 +41,7 @@
     text-align: center;
     height: 100%;
     padding-top: 10px;
-    color: #04AA6D;
+    color: #181b1a;
     background-color: var(--just-white);
   }
   .button-primary {

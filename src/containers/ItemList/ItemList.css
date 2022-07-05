@@ -1,6 +1,7 @@
 .Item-list {
     display: flex;
     margin: 2%;
-    
+    justify-content: center;
+    gap:10px;
     
 }
