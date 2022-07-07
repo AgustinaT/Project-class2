@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./containers/NotFound/NotFound";
 import MovieContainer from "./containers/MovieContainer/MovieContainer";
 import MangaContainer from "./containers/MangaContainer/MangaContainer";
+import Contacto from "./components/pages/Contacto";
 
 function App() {
   /*2*/
@@ -19,8 +20,9 @@ function App() {
           <Route path="/" element={<ItemListContainer greeting="Bienvenidos!!" /*12*//>}></Route> 
           <Route path="/category/:categoryId" element={<ItemListContainer/>}></Route>
           <Route path="/detail/:productId" element={<ItemDetailContainer />}></Route>
-          <Route path="/peliculas" element={<MovieContainer />}></Route>
-          <Route path="/mangas" element={<MangaContainer />}></Route>
+          <Route path="/pelicula/:pelicula" element={<MovieContainer />}></Route>
+          <Route path="/manga/:manga" element={<MangaContainer />}></Route>
+          <Route path="contacto" element={<Contacto />}></Route>
           <Route path="*" element={<NotFound/>}></Route>
         </Routes>
         {/*14*/} 
