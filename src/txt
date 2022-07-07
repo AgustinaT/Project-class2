@@ -1,11 +1,21 @@
-import React from 'react'
-import ItemDetail from '../ItemDetail/ItemDetail'
-import { useState, useEffect } from "react";
-import {useParams} from 'react-router-dom';
+{/*
+1)import { useState } from "react";
+2)const [idDetail, setIdDetail] = useState(0);
+3)console.log(idDetail);
+4){<ItemDetailContainer id={idDetail} />}
+5)setIdDetail
+6)const handleDetail = (id) => {setIdDetail(id)};
+7)onClick={()=> handleDetail(id)}
+8)setIdDetail
+9)setIdDetail={setIdDetail}
+10)setIdDetail
+11)setIdDetail={setIdDetail}
+12)setIdDetail={setIdDetail}
+<ItemDetailContainer id={2}/>
+`/products.json.${params.productId}`
 
-//Queremos obtener datos de un producto especifico (.id?)
-const ItemDetailContainer = () => {
-  const [productDetail, setProductDetail] = useState(null) //puede ser un array o objeto dependiendo de la API, pero los detalles suelen ser objetos
+
+const [productDetail, setProductDetail] = useState(null) //puede ser un array o objeto dependiendo de la API, pero los detalles suelen ser objetos
   const [error, setError] = useState("")
   console.log(error)
 
@@ -38,11 +48,7 @@ const ItemDetailContainer = () => {
   }, [params])
   
 
-  return (
-    <div>
-    {productDetail?<ItemDetail product={productDetail}/>:<p>Cargando mangas, no te vayas!...</p>}
-    </div>
-  )
-}
 
-export default ItemDetailContainer
+*/}
+
+

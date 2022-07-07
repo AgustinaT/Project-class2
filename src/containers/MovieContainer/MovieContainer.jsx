@@ -3,9 +3,9 @@ import ItemDetail from '../ItemDetail/ItemDetail'
 import { useState, useEffect } from "react";
 import {useParams} from 'react-router-dom';
 
-//Queremos obtener datos de un producto especifico (.id?)
-const ItemDetailContainer = () => {
-  const [productDetail, setProductDetail] = useState(null) //puede ser un array o objeto dependiendo de la API, pero los detalles suelen ser objetos
+
+const MovieContainer = () => {
+  /* const [productDetail, setProductDetail] = useState(null) //puede ser un array o objeto dependiendo de la API, pero los detalles suelen ser objetos
   const [error, setError] = useState("")
   console.log(error)
 
@@ -36,13 +36,13 @@ const ItemDetailContainer = () => {
     
     
   }, [params])
-  
+   */
 
-  return (
-    <div>
+  return ( <h1>anda?</h1>
+     /*<div>
     {productDetail?<ItemDetail product={productDetail}/>:<p>Cargando mangas, no te vayas!...</p>}
-    </div>
+    </div>*/
   )
 }
 
-export default ItemDetailContainer
+export default MovieContainer
