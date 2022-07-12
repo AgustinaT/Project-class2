@@ -21,7 +21,7 @@ const Item = ({ prod /*5*/ }) => {
     
     <Card className="Item">
       <div className="imagenes">
-        <img src={imagen} alt="puppyPhoto" />
+        <img src={imagen} alt="anime-foto" />
       </div>
       <Card.Body className="card">
         <Card.Title>{nombre} </Card.Title>

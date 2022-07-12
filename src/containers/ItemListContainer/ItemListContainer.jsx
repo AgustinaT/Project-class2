@@ -70,10 +70,9 @@ const ItemListContainer = ({ greeting}) => { //10
         <div className="item-list-cols">
           <div>
             <ItemList info={info} /*11*//> 
+            <ItemCount onAdd={onAdd}/>
           </div>
         </div>
-        {/* <ItemCount onAdd={onAdd} />
-        <ItemCount onAdd={onAdd} /> */}
       </div>
     </>
   );

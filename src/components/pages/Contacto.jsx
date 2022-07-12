@@ -1,14 +1,15 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 const Contacto = () => {
   return (
     <>
-    <h6>Contáctanos </h6>
+    <h5>Contáctanos</h5> 
     </>
     
   )
 }
+
+
 
 export default Contacto

@@ -30,11 +30,6 @@ const ItemDetailContainer = () => {
       getProducts();
      }, 2000); 
 
-    
-    
-
-    
-    
   }, [params])
   
 

@@ -9,6 +9,7 @@ import NotFound from "./containers/NotFound/NotFound";
 import MovieContainer from "./containers/MovieContainer/MovieContainer";
 import MangaContainer from "./containers/MangaContainer/MangaContainer";
 import Contacto from "./components/pages/Contacto";
+import Cart from "./containers/Cart/Cart";
 
 function App() {
   /*2*/
@@ -24,6 +25,7 @@ function App() {
           <Route path="/manga/:manga" element={<MangaContainer />}></Route>
           <Route path="contacto" element={<Contacto />}></Route>
           <Route path="*" element={<NotFound/>}></Route>
+          <Route path='/cart' element={<Cart/>}></Route>
         </Routes>
         {/*14*/} 
        {/*3*/} 
