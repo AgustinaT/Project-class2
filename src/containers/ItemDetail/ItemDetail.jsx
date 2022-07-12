@@ -2,6 +2,7 @@ import React from 'react'
 import ItemCount from "../../components/ItemCount/ItemCount";
 import { useState} from "react";
 import { useNavigate } from 'react-router-dom';
+import "./ItemDetail.css";
 //va a tener TODOS los datos del producto
 
 const ItemDetail = ({product}) => { 
@@ -26,9 +27,10 @@ const ItemDetail = ({product}) => {
         <p>{product.descripcion}</p>
         <p>{product.precio}</p>
         <img src={product.imagen} alt="imagen"/>
-        {!qtyAdded ? <ItemCount onAdd ={handleConfirm}/>
+        <>{!qtyAdded ? <ItemCount onAdd ={handleConfirm}/>
         : 
-        <button className="btn btn-outline-success" onClick = {handleTerminate}>Finaliza tu compra</button>}
+        <button className="btn btn-outline-success" onClick = {handleTerminate}>Finaliza tu compra</button>}</>
+        
     </div>
   )
 }

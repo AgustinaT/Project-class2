@@ -3,10 +3,6 @@
     width: 100%;
 }
 
-/*.Item{
-    width: '18rem';
-}*/
-
 .btn {
     font-size: 14px !important;
 }
@@ -16,7 +12,7 @@
     display:flex;
     justify-content: center;
     width: 100%;
-    height: 100%
+    height:100%;
 }
 /* agregue 100% para q cubran todo el alto y el ancho del div*/
 .imagenes > img {

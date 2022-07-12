@@ -65,12 +65,12 @@ const ItemListContainer = ({ greeting}) => { //10
   return (
     <>
       <div className="item-list-container">
-        <h6>{greeting}</h6>
+        <h5>{greeting}</h5>
 
         <div className="item-list-cols">
           <div>
-            <ItemList info={info} /*11*//> 
-            <ItemCount onAdd={onAdd}/>
+          <ItemList info={info} /*11*//> 
+            {/*<ItemCount onAdd={onAdd}/>*/}
           </div>
         </div>
       </div>
