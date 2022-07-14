@@ -1,0 +1,15 @@
+.carrito-prod{
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    margin-left: 2%;
+}
+
+.titulo-limpiar{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2%;
+}
+

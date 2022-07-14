@@ -3,6 +3,8 @@ import ItemCount from "../../components/ItemCount/ItemCount";
 import { useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import "./ItemDetail.css";
+import { useContext } from 'react';
+import { Shop } from '../../context/ShopContext'
 //va a tener TODOS los datos del producto
 
 const ItemDetail = ({product}) => { 
@@ -11,11 +13,14 @@ const ItemDetail = ({product}) => {
   
   const [qtyAdded, setQtyAdded] = useState(0);
 
+  const {addItem} = useContext(Shop);
+
   const handleConfirm = (qty) => {
     setQtyAdded(qty)
   }
 
   const handleTerminate = () => {
+    addItem(product, qtyAdded)
     navigate('/cart')
   }
   console.log(qtyAdded);

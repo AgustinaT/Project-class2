@@ -25,10 +25,13 @@ const Item = ({ prod /*5*/ }) => {
       </div>
       <Card.Body className="card">
         <Card.Title>{nombre} </Card.Title>
-        <Card.Text className="card-descripcion">{descripcion}</Card.Text>
+        <Card.Text className="card-descripcion">{descripcion}</Card.Text>      
+        <div>
         <Card.Text>precio: {precio}</Card.Text>
         <Button className="btn btn-success" onClick={()=>handleDetail()}>Ver detalle del producto</Button> {/*por props le paso el id "7"*/}
         <ItemCount onAdd={onAdd} />
+        </div>
+        
       </Card.Body>
     </Card>
 

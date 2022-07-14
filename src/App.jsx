@@ -3,17 +3,18 @@ import NavBar from "./components/NavBar/NavBar";
 import ItemListContainer from "./containers/ItemListContainer/ItemListContainer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ItemDetailContainer from "./containers/ItemDetailContainer/ItemDetailContainer";
-/*1*/ 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./containers/NotFound/NotFound";
 import MovieContainer from "./containers/MovieContainer/MovieContainer";
 import MangaContainer from "./containers/MangaContainer/MangaContainer";
 import Contacto from "./components/pages/Contacto";
 import Cart from "./containers/Cart/Cart";
+import ShopProvider from "./context/ShopContext";
 
 function App() {
   /*2*/
   return (
+  <ShopProvider>
     <BrowserRouter> {/*Componente principal de la navegacion*/}
       <div className="container">
         <NavBar /> {/*Va afuera de las rutas porque se tiene que rederizar siempre*/}
@@ -31,6 +32,7 @@ function App() {
        {/*3*/} 
       </div>
     </BrowserRouter>
+  </ShopProvider>
   );
 }
 

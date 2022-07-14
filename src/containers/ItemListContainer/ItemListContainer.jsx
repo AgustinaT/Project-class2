@@ -15,7 +15,7 @@ const ItemListContainer = ({ greeting}) => { //10
 
   { id: 2, nombre: "Jujutsu Kaisen", "precio": "$750", descripcion: "Las emociones negativas creadas por los humanos se convierten en maldiciones y se esconden en la vida cotidiana. Estas maldiciones solo pueden ser exorcizadas.", imagen: "/jujutsukaisen1.jpg", categoria:"manga"},
 
-  { id: 3, nombre: "The Promised Neverland", "precio": "$800", descripcion: "The Promised Nerverland es un anime japonés que gira en torno a tres huérfanos (Emma, Norman y Ray) que están esperando a que se les asigne una familia adoptiva. Ellos viven alegres en el orfanato de Grace Field House. Un giro inesperado hace cambiar todo, los chicos se rebelan y luchan al máximo en una tenebrosa aventura.",  imagen: "/the promised neverland.jpg", categoria:"manga"  },
+  { id: 3, nombre: "The Promised Neverland", "precio": "$800", descripcion: "The Promised Nerverland es un anime japonés que gira en torno a tres huérfanos (Emma, Norman y Ray) que están esperando a que se les asigne una familia adoptiva. Ellos viven alegres en el orfanato de Grace Field House. Un giro inesperado hace cambiar todo.",  imagen: "/the promised neverland.jpg", categoria:"manga"  },
 
   { id: 4, nombre: "El Viaje de Chihiro", "precio": "$1000", descripcion: "El filme cuenta la historia de una niña de diez años llamada Chihiro, quien durante una mudanza se ve atrapada en un mundo mágico y sobrenatural, teniendo como misión buscar su libertad y la de sus padres, y así poder regresar a su mundo.", imagen: "/chihiro.jpg", categoria:"pelicula"},
 
