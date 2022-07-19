@@ -4,12 +4,16 @@ import { HiShoppingCart } from 'react-icons/hi';
 import { Shop } from '../../context/ShopContext';
 
 export const CartWidget = () => {
-  const {cart} = useContext(Shop);
+  const {cart, TotalItem} = useContext(Shop);
+  console.log(cart);
   return (
-    <div>
+    <>
+    {cart.length >=1 && <div>
       <HiShoppingCart size= {18}/> 
-      {cart.length && <span>({cart.length})</span>}
-      </div>  
+      {cart.length && <span>({TotalItem()})</span>}
+      </div>}
+    </>
+    
   )
     
 }

@@ -18,7 +18,7 @@ console.log(estadoA);
             <li><Link to='/manga/manga'>Mangas</Link></li>
             <li><Link to='/pelicula/pelicula'>Peliculas</Link></li>
             <li><Link to='/contacto'>Contacto</Link></li>
-            <li><a href="/#">{estadoA}</a></li>
+            {/* <li><a href="/#">{estadoA}</a></li> */}
             <li><Link to='/cart'><CartWidget/></Link></li>
         
             
