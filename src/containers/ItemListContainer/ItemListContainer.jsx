@@ -4,59 +4,53 @@ import ItemCount from "../../components/ItemCount/ItemCount";
 import ItemList from "../ItemList/ItemList";
 import "./ItemListContainer.css";
 import { useParams } from "react-router-dom";
+import { db } from "../../Firebase/config";
+import { collection, query, getDocs } from "firebase/firestore";
 
 const ItemListContainer = ({ greeting}) => { //10
-  const { categoryId } = useParams();
-  const [info, setInfo] = useState([]);
-  
+  // const { categoryId } = useParams();
+  const [productos, setProductos] = useState([])
+  const [productosFiltrados, setProductosFiltrados] = useState([])
 
-  const products = [ 
-  {id: 1, nombre: "Demon Slayer", precio: "700", descripcion: "Kimetsu no Yaiba, Guardianes de la noche en España, nos presenta a Kamado Tanjiro, un chico joven, bastante inteligente y con un corazón que no le abe en el pecho. Este vive son su familia y gana dinero vendiendo carbón. Pero todo cambia cuando su familia es atacada y asesinada.", imagen: "/demonSlayer.jpg", categoria:"manga" },
+  const params = useParams()
 
-  { id: 2, nombre: "Jujutsu Kaisen", "precio": "750", descripcion: "Las emociones negativas creadas por los humanos se convierten en maldiciones y se esconden en la vida cotidiana. Estas maldiciones solo pueden ser exorcizadas.", imagen: "/jujutsukaisen1.jpg", categoria:"manga"},
+  useEffect(() => {
 
-  { id: 3, nombre: "The Promised Neverland", "precio": "800", descripcion: "The Promised Nerverland es un anime japonés que gira en torno a tres huérfanos (Emma, Norman y Ray) que están esperando a que se les asigne una familia adoptiva. Ellos viven alegres en el orfanato de Grace Field House. Un giro inesperado hace cambiar todo.",  imagen: "/the promised neverland.jpg", categoria:"manga"  },
+    const getProductos = async () => {
+      try {
 
-  { id: 4, nombre: "El Viaje de Chihiro", "precio": "1000", descripcion: "El filme cuenta la historia de una niña de diez años llamada Chihiro, quien durante una mudanza se ve atrapada en un mundo mágico y sobrenatural, teniendo como misión buscar su libertad y la de sus padres, y así poder regresar a su mundo.", imagen: "/chihiro.jpg", categoria:"pelicula"},
+        const q = query(collection(db, "products"));
+        const querySnapshot = await getDocs(q);
+        const productos = []
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          // console.log(doc.id, " => ", doc.data());
+          productos.push({id: doc.id, ...doc.data()})
+        });
 
-  { id: 5, nombre: "Mi vecino Totoro", "precio": "1000", descripcion: "De qué trata 'Mi vecino Totoro' 'Mi vecino Totoro' cuenta la historia de dos niñas, Satsuki y Mei, que se mudan con su padre a una casa que se encuentra cerca del bosque, mientras su madre está recuperándose de tuberculosis en un sanatorio rural",  imagen: "/totoro.jpg", categoria:"pelicula"} ]
-    
-  
-
-  const task = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(products);
-    }, 2000);
-  });
-
-  const fetchInfo = async () => {
-    try {
-      let resolve = await task;
-      setInfo(resolve);
-
-      if(categoryId){
-        /*Cuando sí solicito una categoría*/
-        const filtrado = resolve.filter( el => el.categoryId === categoryId);
-        setInfo(filtrado);
-    }else{
-        /*Cuando no pase una categoria*/
-        setInfo(resolve);
+        console.log(productos);
+        setProductos(productos);
+        setProductosFiltrados(productos);
+      } catch (error) {
+        console.log("Hubo un error:");
+        console.log(error);
+      }
     }
+    getProductos()
+  }, [])
 
-    } catch (error) {
-      console.log(error);
+
+  useEffect(() => {
+    if (params?.categoryId) {
+      const productosFiltrados = productos.filter(producto => producto.category === params.categoryId)
+      setProductosFiltrados(productosFiltrados)
+    } else {
+      setProductosFiltrados(productos)
     }
-  };
+  }, [params, productos])
 
-  useEffect(
-    () => {
-      //lo usamos para hacer llamadas asincronas, el callback que recibe no puede ser asincrono, lo hacemos afuera
-      fetchInfo();
-    },
-    [categoryId]
-  );
+  console.log(productos);
 
-  console.log(info);
 
   const onAdd = (contador) => {
     console.log("Se agrego al carrito");
@@ -69,7 +63,7 @@ const ItemListContainer = ({ greeting}) => { //10
 
         <div className="item-list-cols">
           <div>
-          <ItemList info={info} /*11*//> 
+          <ItemList info={productosFiltrados} /*11*//> 
             {/*<ItemCount onAdd={onAdd}/>*/}
           </div>
         </div>

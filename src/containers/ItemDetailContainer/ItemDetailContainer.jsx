@@ -2,6 +2,9 @@ import React from 'react'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import { useState, useEffect } from "react";
 import {useParams} from 'react-router-dom';
+import { doc, getDoc } from "firebase/firestore";
+import { db } from '../../Firebase/config';
+
 
 //Queremos obtener datos de un producto especifico (.id?)
 const ItemDetailContainer = () => {
@@ -16,11 +19,22 @@ const ItemDetailContainer = () => {
     setTimeout(() => { 
       const getProducts = async () => {
         try {
-          const response = await fetch(`/products.json`) 
-          const data = await response.json();
-          console.log(data)
-          const result = data.find(product => product.id == params.productId); //simple
-          setProductDetail(result)
+
+          //llamo a la referencia del documento 
+          const docRef = doc(db, "products", params.productId);
+          const docSnap = await getDoc(docRef); /*obtenemos la referencia del doc*/
+
+          if (docSnap.exists()) {
+            console.log(docSnap.id); /*Id autogenerado por firebase*/
+            console.log("Document data:", docSnap.data());
+            const productDetail = {id: docSnap.id, ...docSnap.data()}
+            setProductDetail(productDetail);
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+
+
         } 
         catch (e) {
           console.log(e.message)
@@ -35,7 +49,7 @@ const ItemDetailContainer = () => {
 
   return (
     <div>
-    {productDetail?<ItemDetail product={productDetail}/>:<p>Cargando mangas, no te vayas!...</p>}
+    {productDetail?<ItemDetail product={productDetail}/>:<p>Cargando, no te vayas!...</p>}
     </div>
   )
 }

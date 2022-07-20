@@ -2,43 +2,55 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import {useParams} from 'react-router-dom';
 import ItemList from '../ItemList/ItemList';
-import products from "../../data/data";
+import { db } from "../../Firebase/config";
+import { collection, query, getDocs } from "firebase/firestore";
 
 const MangaContainer = () => {
 
-  const [dataManga, setDataManga] = useState([])
+  const [dataManga, setDataManga] = useState([]);
+  const params = useParams()
 
-  const {manga} = useParams()
-
-  const [error, setError] = useState("")
-  
-  const task = new Promise ((resolve, reject)=> {
-    setTimeout(()=> {
-      resolve(products)
-    }, 2000);
-  });
-
-  const fetchInfo = async () => {
-    try {
-      let resolve = await task;
-      setDataManga(resolve);
-
-      if (manga) {
-        const filtrado = resolve.filter((el) => el.categoria === manga); 
-        setDataManga(filtrado);
-      }
-      else {
-        setDataManga(resolve);
-      }
-    } catch (error) {
-      console.log(error); 
-    }
-  };
+  const [error, setError] = useState("");
+  const [productosFiltrados, setProductosFiltrados] = useState([])
 
   useEffect(() => {
-    fetchInfo(); 
-  }, [manga]);
-console.log(dataManga);
+
+    const getProductos = async () => {
+      try {
+
+        const q = query(collection(db, "products"));
+        const querySnapshot = await getDocs(q);
+        const productos = []
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          // console.log(doc.id, " => ", doc.data());
+          productos.push({id: doc.id, ...doc.data()})
+        });
+
+        console.log(productos);
+        setDataManga(productos);
+        setProductosFiltrados(productos);
+      } catch (error) {
+        console.log("Hubo un error:");
+        console.log(error);
+      }
+    }
+    getProductos()
+  }, []);
+
+console.log(dataManga)
+
+  useEffect(() => {
+    if (params?.manga) {
+      console.log("entra?")
+      const productosFiltrados = dataManga.filter(producto => producto.categoria === params.manga)
+      setProductosFiltrados(productosFiltrados)
+    } else {
+      setProductosFiltrados(dataManga)
+    }
+  }, [params, dataManga])
+
+  console.log(dataManga);
 
 return (
   <>
@@ -47,7 +59,7 @@ return (
 
       <div className="item-list-cols">
         <div>
-          <ItemList info={dataManga}/> 
+          <ItemList info={productosFiltrados}/> 
         </div>
       </div>
       {/* <ItemCount onAdd={onAdd} />
