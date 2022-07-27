@@ -3,11 +3,27 @@ import { useContext } from 'react'
 import { Shop } from '../../context/ShopContext'
 import "./Cart.css";
 import { useNavigate, Link } from 'react-router-dom';
+import ordenGenerada from '../../Utils/GenerarOrden';
+import { collection, addDoc } from "firebase/firestore"; 
+import { db } from '../../Firebase/config';
+
 
 
 const Cart = () => {
   const {cart, removeItem, clearCart, TotalPrice, TotalItem, OneTotalPrice} = useContext(Shop);
   console.log(cart);
+
+  const confirmarOrden = async () => {
+    const orden = ordenGenerada("Agus", "calle falsa 123", cart, 1234); //tengo que usar la OneTotalPrice
+    //guardarOrden(cart, orden);
+
+// Add a new document with a generated id.
+const docRef = await addDoc(collection(db, "orders"), orden);
+console.log("Document written with ID: ", docRef.id);
+//lo puedo dejar asi y le agrego el update del stock 
+
+
+  }
 
   const navigate = useNavigate();
 
@@ -77,7 +93,8 @@ const Cart = () => {
             </tr>
           </tbody>
         </table>
-        <div className="d-flex justify-content-end"><button className="btn btn-outline-success col-2 " onClick={() => back ()}>Finaliza tu compra</button></div>
+        <div className="d-flex justify-content-end"><button className="btn btn-outline-success col-2 " onClick={() => back ()}>Finaliza tu compra</button>
+        <button className="btn btn-outline-success" onClick={confirmarOrden}>Confirmar compra</button></div>
         
   </div> } {
     !cart.length >= 1 &&
