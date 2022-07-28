@@ -14,7 +14,6 @@ const Item = ({ prod /*5*/ }) => {
 
  const navigate = useNavigate();
  const handleDetail = () => {
-  console.log("Navegá");
   navigate(`/detail/${prod.id}`)
  }
   return (

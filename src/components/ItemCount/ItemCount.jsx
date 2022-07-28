@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './ItemCount.css';
 
-const ItemCount = ({ onAdd }) => {
+const ItemCount = ({ onAdd, stock}) => {
     const initial = 1;
-    const stock = 7; 
+    console.log(stock)
+    // const stock = 7; 
   
     //hook de estado
     const [contador, setContador] = useState(initial);

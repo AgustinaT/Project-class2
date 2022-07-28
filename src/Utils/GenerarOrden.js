@@ -1,5 +1,6 @@
 //Función auxiliar para generar la orden.
 const ordenGenerada = (nombre, direccion, cart, total) => {
+    console.log(total);
     return {
         buyer: {
             nombre: nombre,

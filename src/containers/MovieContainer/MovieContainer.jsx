@@ -10,7 +10,7 @@ const MovieContainer = () => {
   const [dataMovie, setDataMovie] = useState([])
   const params = useParams()
 
-  const [error, setError] = useState("")
+  // const [error, setError] = useState("")
   const [productosFiltrados, setProductosFiltrados] = useState([])
 
   useEffect(() => {
@@ -40,7 +40,6 @@ const MovieContainer = () => {
 
   useEffect(() => {
     if (params?.pelicula) {
-      console.log("entra?")
       const productosFiltrados = dataMovie.filter(producto => producto.categoria === params.pelicula)
       setProductosFiltrados(productosFiltrados)
     } else {

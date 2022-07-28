@@ -4,25 +4,18 @@ import { Shop } from '../../context/ShopContext'
 import "./Cart.css";
 import { useNavigate, Link } from 'react-router-dom';
 import ordenGenerada from '../../Utils/GenerarOrden';
-import { collection, addDoc } from "firebase/firestore"; 
-import { db } from '../../Firebase/config';
-
+import guardarOrden from '../../Utils/GuardarOrden';
 
 
 const Cart = () => {
   const {cart, removeItem, clearCart, TotalPrice, TotalItem, OneTotalPrice} = useContext(Shop);
   console.log(cart);
 
+const precio = TotalPrice();
+
   const confirmarOrden = async () => {
-    const orden = ordenGenerada("Agus", "calle falsa 123", cart, 1234); //tengo que usar la OneTotalPrice
-    //guardarOrden(cart, orden);
-
-// Add a new document with a generated id.
-const docRef = await addDoc(collection(db, "orders"), orden);
-console.log("Document written with ID: ", docRef.id);
-//lo puedo dejar asi y le agrego el update del stock 
-
-
+    const orden = ordenGenerada("Agus", "calle falsa 123", cart, precio); //tengo que usar la OneTotalPrice
+    guardarOrden(cart, orden);
   }
 
   const navigate = useNavigate();
@@ -37,18 +30,6 @@ console.log("Document written with ID: ", docRef.id);
     <div className='titulo-limpiar'><h5>Carrito de compras</h5> 
     <button className='btn btn-outline-success' onClick = {() => clearCart () }> Limpiar carrito </button></div>
 
-    {/* {cart.map(producto => {
-      return <li key={producto.id}>{producto.nombre } <img src={producto.imagen} width='80px' alt={producto.nombre}></img>
-      <span> {producto.quantity}</span>
-      <button className='btn btn-outline-success' onClick = {() => removeItem(producto.id) }> Eliminar </button> <br/>
-      <p>{producto.precio}</p>
-      <div> 
-       {OneTotalPrice(producto.precio, producto.quantity)} 
-      </div>
-      </li>
-      })}
-      {TotalPrice()}
-      <button className="btn btn-outline-success" onClick={() => back ()}>Finaliza tu compra</button> */}
 
       <table class="table">
           <thead>

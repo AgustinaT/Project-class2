@@ -42,7 +42,6 @@ console.log(dataManga)
 
   useEffect(() => {
     if (params?.manga) {
-      console.log("entra?")
       const productosFiltrados = dataManga.filter(producto => producto.categoria === params.manga)
       setProductosFiltrados(productosFiltrados)
     } else {

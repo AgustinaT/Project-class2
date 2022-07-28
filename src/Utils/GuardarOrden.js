@@ -1,5 +1,6 @@
 import { addDoc, collection, doc, getDoc, writeBatch } from "firebase/firestore"
-import { db } from "../firebase/config"
+import { db } from "../Firebase/config";
+
 
 const guardarOrden = (cart, orden) => {
     console.log("Guardar orden");
@@ -20,6 +21,7 @@ const guardarOrden = (cart, orden) => {
             const producto = {...documentSnapshot.data(), id: documentSnapshot.id};
 
             //Hacemos un update en caso que el stock supere a la cantidad.
+            console.log(productoEnCart.quantity, producto.stock)
             if (producto.stock >= productoEnCart.quantity) {
                 batch.update(doc(db, 'products', producto.id) ,{
                     stock: producto.stock - productoEnCart.quantity
