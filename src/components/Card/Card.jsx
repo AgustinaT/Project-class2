@@ -5,9 +5,6 @@ import foto from '../../images/anya.jpg'
 
 const card = () => {
 
-  const orderId = localStorage.getItem('ORDER_ID');
-  localStorage.removeItem('ORDER_ID');
-
   return (
     <div className="card col-6 mx-auto">
     <div className='contenedor-anya text-center'>

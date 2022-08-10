@@ -9,11 +9,10 @@ import { db } from '../../Firebase/config';
 
 const ItemDetailContainer = () => {
   const [productDetail, setProductDetail] = useState(null)
-  const [error, setError] = useState("")
-  console.log(error)
+
+  const [error, setError] = useState();
 
   const params = useParams()
-  console.log(params)
 
   useEffect(() => {
     setTimeout(() => { 
@@ -24,25 +23,25 @@ const ItemDetailContainer = () => {
           const docSnap = await getDoc(docRef);
 
           if (docSnap.exists()) {
-            console.log(docSnap.id);
-            console.log("Document data:", docSnap.data());
             const productDetail = {id: docSnap.id, ...docSnap.data()}
             setProductDetail(productDetail);
           } else {
-            console.log("No such document!");
+            alert("No such document!");
           }
 
 
         } 
         catch (e) {
-          console.log(e.message)
+          alert(e.message)
           setError(e.message)
+          alert(error)
         }
+        
       }
       getProducts();
      }, 2000); 
 
-  }, [params])
+  }, [params, error])
   
 
   return (

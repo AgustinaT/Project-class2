@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import './ItemCount.css';
-import swal from 'sweetalert';
 
 
 const ItemCount = ({ onAdd, stock}) => {
     const initial = 1;
-    console.log(stock)
   
     const [contador, setContador] = useState(initial);
   

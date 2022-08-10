@@ -10,7 +10,6 @@ const MangaContainer = () => {
   const [dataManga, setDataManga] = useState([]);
   const params = useParams()
 
-  const [error, setError] = useState("");
   const [productosFiltrados, setProductosFiltrados] = useState([])
 
   useEffect(() => {
@@ -25,18 +24,16 @@ const MangaContainer = () => {
           productos.push({id: doc.id, ...doc.data()})
         });
 
-        console.log(productos);
         setDataManga(productos);
         setProductosFiltrados(productos);
       } catch (error) {
-        console.log("Hubo un error:");
-        console.log(error);
+        alert("Hubo un error:");
+
       }
     }
     getProductos()
   }, []);
 
-console.log(dataManga)
 
   useEffect(() => {
     if (params?.manga) {
@@ -47,7 +44,6 @@ console.log(dataManga)
     }
   }, [params, dataManga])
 
-  console.log(dataManga);
 
 return (
   <>

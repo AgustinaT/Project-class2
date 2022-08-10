@@ -21,9 +21,6 @@ const ItemDetail = ({ product }) => {
     addItem(product, qtyAdded);
     navigate("/cart");
   };
-  console.log(qtyAdded);
-  console.log(product);
-  console.log(product.stock);
   return (
     <div className="container-detail">
       <h4>{product.nombre}</h4>

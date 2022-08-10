@@ -9,7 +9,6 @@ import CartForm from '../../components/CartForm/CartForm';
 
 const Cart = () => {
   const {cart, removeItem, clearCart, TotalPrice, TotalItem, OneTotalPrice} = useContext(Shop);
-  console.log(cart);
 
   const [view, setView] = useState(false);
 

@@ -35,7 +35,7 @@ const enviarOrden = (cart, order) => {
         else {
           outOfStock.push(prod);
         }
-        console.log("productos fuera de stock:");
+        alert("productos fuera de stock:");
         
       }
     );
@@ -52,7 +52,7 @@ const enviarOrden = (cart, order) => {
         icon:"success"});
 
           } catch (error) {
-        console.log("create order in firebase error: ", error.message);
+        alert("create order in firebase error: ", error.message);
       }
     } else {
       let msj = "";

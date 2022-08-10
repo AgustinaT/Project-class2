@@ -24,12 +24,11 @@ const MovieContainer = () => {
           productos.push({id: doc.id, ...doc.data()})
         });
 
-        console.log(productos);
         setDataMovie(productos);
         setProductosFiltrados(productos);
       } catch (error) {
-        console.log("Hubo un error:");
-        console.log(error);
+        alert("Hubo un error:");
+
       }
     }
     getProductos()

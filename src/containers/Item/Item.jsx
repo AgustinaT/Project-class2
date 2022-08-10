@@ -5,10 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 const Item = ({ prod }) => {
   const { nombre, precio, imagen, descripcion} = prod;
-  const onAdd = (contador) => {
-    console.log("Se agrego al carrito");
-  };
-
 
  const navigate = useNavigate();
  const handleDetail = () => {

@@ -24,12 +24,11 @@ const ItemListContainer = ({ greeting}) => {
           productos.push({id: doc.id, ...doc.data()})
         });
 
-        console.log(productos);
         setProductos(productos);
         setProductosFiltrados(productos);
       } catch (error) {
-        console.log("Hubo un error:");
-        console.log(error);
+        alert("Hubo un error:");
+
       }
     }
     getProductos()
@@ -45,12 +44,6 @@ const ItemListContainer = ({ greeting}) => {
     }
   }, [params, productos])
 
-  console.log(productos);
-
-
-  const onAdd = (contador) => {
-    console.log("Se agrego al carrito");
-  };
 
   return (
     <>

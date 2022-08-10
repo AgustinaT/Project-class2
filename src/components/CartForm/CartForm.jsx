@@ -63,17 +63,6 @@ const CartForm = () => {
     confirmaremail,
   } = values;
 
-  let errors = {
-		name: {
-			text:'',
-			state: false
-		},
-		password: {
-			text: '', 
-			state: false
-		}
-	};
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -81,7 +70,6 @@ const CartForm = () => {
     if (name.trim().length < 1) {
         setErrorName("La casilla no puede estar vacia") 
         setStateName(true);
-        console.log(errors.name.text,errors.name.state)
     }else {
       setStateName(false);
     }
@@ -148,17 +136,6 @@ const confirmForm= () => {
 const isValidated = confirmForm();
 if(isValidated) {
   setStep(false)
-
-  /*  const dataOrder = {
-      buyer: values,
-      items: cart,
-      totalPrice: getTotal(),
-      date: new Date().toLocaleString(),
-    };
-    console.log("data order: ", dataOrder);
-    enviarOrden(cart, dataOrder);
-    clearCart();
-    navigate("/card"); */
 }
   };
 
@@ -177,23 +154,10 @@ if(isValidated) {
       totalPrice: getTotal(),
       date: new Date().toLocaleString(),
     };
-    console.log("data order: ", dataOrder);
     enviarOrden(cart, dataOrder);
     clearCart();
     navigate("/card"); 
   }
-
-  // const handleStep = (stepBool, e) => {
-  //   e.preventDefault();
-  //   if (valid) {
-  //     setStep(stepBool);
-  //     console.log(step);
-  //   } 
-  //   else {
-  //     setStep(true);
-  //   }
-    
-  // };
 
   return (
     <div>

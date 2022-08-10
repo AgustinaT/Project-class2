@@ -5,7 +5,6 @@ import { Shop } from '../../context/ShopContext';
 
 export const CartWidget = () => {
   const {cart, TotalItem} = useContext(Shop);
-  console.log(cart);
   return (
     <>
     <div>
