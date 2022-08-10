@@ -1,6 +1,6 @@
 # E-commerce - Venta de mangas y comics
 
-
+![Funcionamiento general de la página](https://github.com/AgustinaT/Project-class2/blob/master/public/react-app.gif)
 
 
 ### Introduccion ###
