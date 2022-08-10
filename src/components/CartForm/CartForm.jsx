@@ -5,12 +5,27 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import enviarOrden from "../../Utils/enviarOrden";
 
- 
-
 const CartForm = () => {
-  const [valid, setValid] = useState(false);
 
   const [step, setStep] = useState(true);
+
+  const [errorName, setErrorName]= useState("")
+  const [stateName, setStateName]= useState(false)
+
+  const [errorMail, setErrorMail]= useState("")
+  const [stateMail, setStateMAil]= useState(false)
+
+  const [errorMailconf, setErrorMailconf]= useState("")
+  const [stateMailconf, setStateMailconf]= useState(false)
+
+  const [errorStreet, setErrorStreet] = useState("");
+  const [stateStreet, setStateStreet] = useState(false);
+
+  const [errorNumber, setErrorNumber] = useState("");
+  const [stateNumber, setStateNumber] = useState(false);
+
+  const [errorCodigo, setErrorCodigo] = useState("");
+  const [stateCodigo, setStateCodigo] = useState(false);
 
   const [buttons] = useState({
     submit: "Pagar",
@@ -48,21 +63,92 @@ const CartForm = () => {
     confirmaremail,
   } = values;
 
+  let errors = {
+		name: {
+			text:'',
+			state: false
+		},
+		password: {
+			text: '', 
+			state: false
+		}
+	};
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Se envía el formulario");
-    console.log("form values: ", values);
 
-    //validacion 
+    //Validacion Name
     if (name.trim().length < 1) {
-  console.log("error nuevo")
-
+        setErrorName("La casilla no puede estar vacia") 
+        setStateName(true);
+        console.log(errors.name.text,errors.name.state)
+    }else {
+      setStateName(false);
     }
-    else {
-      setValid(true);
-    }
 
-    const dataOrder = {
+    const regexEmail =
+			/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+// Email validation //
+		if (email.trim().length < 1) {
+			setErrorMail('las casilla no pueden estar vacias');
+			setStateMAil(true)
+		} else if (!regexEmail.test(email)) {
+			setErrorMail('formato de correo invalido');
+			setStateMAil(true);
+		} else {
+			setStateMAil(false);
+		}
+
+//Validacion Email confirmar
+   if (confirmaremail.trim().length < 1) {
+    setErrorMailconf('las casilla no pueden estar vacias');
+    setStateMailconf(true)
+} else if (!regexEmail.test(email)) {
+    setErrorMailconf('formato de correo invalido');
+    setStateMailconf(true);
+} else if ( email !== confirmaremail){
+setErrorMailconf('los email deben ser igual');
+    setStateMailconf(true);
+}else {
+    setStateMailconf(false);
+}
+
+//Validacion Street //
+    if (name.trim().length < 1) {
+      setErrorStreet("La casilla no puede estar vacia") 
+      setStateStreet(true);
+  }else {
+    setStateStreet(false);
+  }
+
+//Validacion Number //
+  if (name.trim().length < 1) {
+    setErrorNumber("La casilla no puede estar vacia") 
+    setStateNumber(true);
+}else {
+  setStateNumber(false);
+}
+
+//validacion cp //
+if (CP.trim().length < 1) {
+  setErrorCodigo("La casilla no puede estar vacia") 
+  setStateCodigo(true);
+}else {
+  setStateCodigo(false);
+}
+
+
+const confirmForm= () => {
+  if ( !stateName && !stateMail && !stateMailconf && !stateStreet && !stateNumber && !stateCodigo ) {
+      return false;
+  } else {
+      return true;
+  }
+};
+const isValidated = confirmForm();
+if(isValidated) {
+  setStep(false);
+   const dataOrder = {
       buyer: values,
       items: cart,
       totalPrice: getTotal(),
@@ -72,6 +158,7 @@ const CartForm = () => {
     enviarOrden(cart, dataOrder);
     clearCart();
     navigate("/card");
+}
   };
 
   const getTotal = () => {
@@ -80,27 +167,26 @@ const CartForm = () => {
         acumulador + itemCart.precio * itemCart.quantity,
       0
     );
-  };
-  console.log(getTotal());
+  }; 
 
-  const handleStep = (stepBool, e) => {
-    e.preventDefault();
-    if (valid) {
-      setStep(stepBool);
-      console.log(step);
-    } 
-    else {
-      setStep(true);
-    }
+  // const handleStep = (stepBool, e) => {
+  //   e.preventDefault();
+  //   if (valid) {
+  //     setStep(stepBool);
+  //     console.log(step);
+  //   } 
+  //   else {
+  //     setStep(true);
+  //   }
     
-  };
+  // };
 
   return (
     <div>
       <div className="setStep">
         <h5 className="text-center">Pago</h5>
       </div>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form">
         {step ? (
           <>
             <h6 className="detalle-envio text-center">Detalle de envio</h6>
@@ -113,38 +199,83 @@ const CartForm = () => {
                 onChange={handleInputChange}
                 value={name}
               />
-              {/* <input
-                type="email"
+              {
+              stateName &&  <p style={{color:"red"}}>{errorName}</p> 
+              }
+              <input
+                type="text"
                 className="form-control mt-2"
                 placeholder="email"
                 name="email"
                 onChange={handleInputChange}
-                value={email || ""}
+                value={email}
               />
+               {
+              stateMail &&  <p style={{color:"red"}}>{errorMail}</p> 
+              }
+
               <input
-                type="email"
+                type="text"
                 className="form-control mt-2"
                 placeholder="Confirmar email"
                 name="confirmaremail"
                 onChange={handleInputChange}
-                value={confirmaremail || ""}
+                value={confirmaremail}
               />
+              {
+              (stateMailconf) &&  <p style={{color:"red"}}>{errorMailconf}</p> 
+              }
+
               <input
                 type="text"
                 className="form-control mt-2"
                 placeholder="Dirección"
                 name="street"
                 onChange={handleInputChange}
-                value={street || ""}
+                value={street}
               />
+              {
+              stateStreet &&  <p style={{color:"red"}}>{errorStreet}</p> 
+              }
+
               <input
                 type="text"
                 className="form-control mt-2"
                 placeholder="Número de teléfono"
                 name="number"
                 onChange={handleInputChange}
-                value={number || ""}
+                value={number}
               />
+              {
+              stateNumber &&  <p style={{color:"red"}}>{errorNumber}</p> 
+              }
+
+              <input
+                type="text"
+                className="form-control mt-2"
+                placeholder="Código postal"
+                name="CP"
+                onChange={handleInputChange}
+                value={CP }
+              />
+              {
+              (stateCodigo) &&  <p style={{color:"red"}}>{errorCodigo}</p> 
+              }
+
+              <textarea
+                name="comment"
+                className="form-control mt-2"
+                cols="30"
+                rows="10"
+                placeholder="Comentario"
+                onChange={handleInputChange}
+                value={comment || ""}
+              ></textarea>
+
+
+              {/* 
+                           
+              
               <input
                 type="text"
                 className="form-control mt-2"
@@ -166,7 +297,8 @@ const CartForm = () => {
                 <button
                   type="submit"
                   className="btn btn-outline-success mt-2 mx-auto"
-                  onClick={(e) => handleStep(false, e)}
+                 /*  onClick={(e) => handleStep(false, e)} */
+                 onClick={handleSubmit}
                 >
                   Siguiente
                 </button>
