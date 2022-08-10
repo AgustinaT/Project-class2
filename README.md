@@ -22,7 +22,6 @@ Tools: [React],
 | Nombre            | Link                                            |
 | -----------       | -----------                                     |
 | Boostrap          | https://getbootstrap.com/                       |
-| Yup               | https://www.npmjs.com/package/yup               |
 | SweetAlert        | https://sweetalert.js.org/guides/#installation  |
 | Google Firebase   | https://console.firebase.google.com/            |
 
