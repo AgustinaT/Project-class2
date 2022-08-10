@@ -2,7 +2,6 @@
 
 ![Funcionamiento general de la página](https://github.com/AgustinaT/Project-class2/blob/master/public/react-app.gif)
 
-
 ### Introduccion ###
 Hoy en día, el anime y los mangas forman parte de la vida de muchxs. Cada vez son más las personas que se disfrazan, van a convenciones, leen y compran productos relacionados con esta parte de la cultura asiática. Parece ser que los tabúes sobre el tema se van desdibujando a medida que pasa el tiempo. Esta pagina esta siendo diseñada para que consigas los mangas y libros que mas queres!
 
@@ -37,4 +36,4 @@ Tools: [React],
  
  ### Autora ###
 
- - @AgustinaT
+ - [@AgustinaT](https://www.linkedin.com/in/tornari-maria-agustina-731104237/)
