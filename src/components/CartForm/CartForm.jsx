@@ -77,7 +77,7 @@ const CartForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //Validacion Name
+//Validacion Name
     if (name.trim().length < 1) {
         setErrorName("La casilla no puede estar vacia") 
         setStateName(true);
@@ -147,8 +147,9 @@ const confirmForm= () => {
 };
 const isValidated = confirmForm();
 if(isValidated) {
-  setStep(false);
-   const dataOrder = {
+  setStep(false)
+
+  /*  const dataOrder = {
       buyer: values,
       items: cart,
       totalPrice: getTotal(),
@@ -157,7 +158,7 @@ if(isValidated) {
     console.log("data order: ", dataOrder);
     enviarOrden(cart, dataOrder);
     clearCart();
-    navigate("/card");
+    navigate("/card"); */
 }
   };
 
@@ -168,6 +169,19 @@ if(isValidated) {
       0
     );
   }; 
+
+  const handlePay =()=>{
+    const dataOrder = {
+      buyer: values,
+      items: cart,
+      totalPrice: getTotal(),
+      date: new Date().toLocaleString(),
+    };
+    console.log("data order: ", dataOrder);
+    enviarOrden(cart, dataOrder);
+    clearCart();
+    navigate("/card"); 
+  }
 
   // const handleStep = (stepBool, e) => {
   //   e.preventDefault();
@@ -186,7 +200,7 @@ if(isValidated) {
       <div className="setStep">
         <h5 className="text-center">Pago</h5>
       </div>
-      <form className="form">
+      <form className="form" onSubmit={handleSubmit}>
         {step ? (
           <>
             <h6 className="detalle-envio text-center">Detalle de envio</h6>
@@ -272,33 +286,11 @@ if(isValidated) {
                 value={comment || ""}
               ></textarea>
 
-
-              {/* 
-                           
-              
-              <input
-                type="text"
-                className="form-control mt-2"
-                placeholder="Código postal"
-                name="CP"
-                onChange={handleInputChange}
-                value={CP || ""}
-              />
-              <textarea
-                name="comment"
-                className="form-control mt-2"
-                cols="30"
-                rows="10"
-                placeholder="Comentario"
-                onChange={handleInputChange}
-                value={comment || ""}
-              ></textarea> */}
               <div className="button-container">
                 <button
                   type="submit"
                   className="btn btn-outline-success mt-2 mx-auto"
-                 /*  onClick={(e) => handleStep(false, e)} */
-                 onClick={handleSubmit}
+               
                 >
                   Siguiente
                 </button>
@@ -345,17 +337,18 @@ if(isValidated) {
                 />
               </div>
               <div className="button-container">
-                <input
+                <button
                   type="button"
                   className="btn btn-outline-success mx-0"
                   value={buttons.back}
-                  // onClick={(e) => handleStep(true, e)}
-                />
-                <input
-                  type="submit"
+                  onClick={() => setStep(true)}
+                >Atras</button>
+                <button
+                  type="button"
                   className="btn btn-outline-success"
                   value={buttons.submit}
-                />
+                  onClick={handlePay}
+                >Pagar</button>
               </div>
             </div>
           </>
