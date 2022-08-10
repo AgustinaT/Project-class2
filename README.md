@@ -5,21 +5,33 @@ Hoy en día, el anime y los mangas forman parte de la vida de muchxs. Cada vez s
 
 
 ### Descripcion del projecto ####
-Sitio Web en proceso de diseño para la venta de mangas y comics.
+E-commerce en proceso de desarrollo para la venta de mangas y comics.
 
 
 ### Futuras funcionalidades ###
  - Venta de libros.
  - Venta de accesorios y mercaderia.
+ 
 
-
-### Tecnologias ###
+ ### Tecnologias ###
 Code: [Javascript, HTML, CSS,],
 Tools: [React],
+
+| Nombre            | Link                                            |
+| -----------       | -----------                                     |
+| Boostrap          | https://getbootstrap.com/                       |
+| Yup               | https://www.npmjs.com/package/yup               |
+| SweetAlert        | https://sweetalert.js.org/guides/#installation  |
+| Google Firebase   | https://console.firebase.google.com/            |
 
 
 ### Instalacion ###
  - git clone https://example.com
  - cd ../path/to/the/file
- - npm install
- - npm start
+ - ´npm install´
+ - ´npm start´
+ 
+ 
+ ### Autora ###
+
+ - @AgustinaT

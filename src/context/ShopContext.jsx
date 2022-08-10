@@ -1,17 +1,10 @@
-// configuracion inicial 
 import React, { createContext, useState} from 'react'
-import { useEffect } from 'react';
 
 export const Shop = createContext();
 
-const ShopProvider = ({children}) => {
-    /*metodos, funciones, state, logica*/
-
-    const [estadoA, setEstadoA] = useState("Valor por defecto");
+const ShopProvider = ({ children }) => {
 
     const [cart, setCart] = useState([]);
-
-    /*objetos de cart + todas las propiedades del producto + cantidad del producto que viene por parametro*/
     const addItem = (producto, cantidad) => {
         console.log(producto, cantidad);
         const productoRepetido = isInCart(producto);
@@ -21,7 +14,7 @@ const ShopProvider = ({children}) => {
             setCart([...cart])
         }
         else {
-            setCart([...cart, {...producto, quantity: cantidad}]) /*en caso de que no tenga productos*/ 
+            setCart([...cart, {...producto, quantity: cantidad}])
         }
     } 
 
@@ -55,7 +48,7 @@ const ShopProvider = ({children}) => {
     }
         return (
             <Shop.Provider 
-            value={{estadoA, setEstadoA, addItem, removeItem, clearCart, TotalPrice, TotalItem, OneTotalPrice, cart}}>
+            value={{addItem, removeItem, clearCart, TotalPrice, TotalItem, OneTotalPrice, cart}}>
                 {children}
             </Shop.Provider>
         )

@@ -1,14 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import ItemCount from "../../components/ItemCount/ItemCount";
 import ItemList from "../ItemList/ItemList";
 import "./ItemListContainer.css";
 import { useParams } from "react-router-dom";
 import { db } from "../../Firebase/config";
 import { collection, query, getDocs } from "firebase/firestore";
 
-const ItemListContainer = ({ greeting}) => { //10
-  // const { categoryId } = useParams();
+const ItemListContainer = ({ greeting}) => {
   const [productos, setProductos] = useState([])
   const [productosFiltrados, setProductosFiltrados] = useState([])
 
@@ -23,8 +21,6 @@ const ItemListContainer = ({ greeting}) => { //10
         const querySnapshot = await getDocs(q);
         const productos = []
         querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          // console.log(doc.id, " => ", doc.data());
           productos.push({id: doc.id, ...doc.data()})
         });
 
@@ -63,8 +59,7 @@ const ItemListContainer = ({ greeting}) => { //10
 
         <div className="item-list-cols">
           <div>
-          <ItemList info={productosFiltrados} /*11*//> 
-            {/*<ItemCount onAdd={onAdd}/>*/}
+          <ItemList info={productosFiltrados} /> 
           </div>
         </div>
       </div>

@@ -8,10 +8,10 @@ export const CartWidget = () => {
   console.log(cart);
   return (
     <>
-    {cart.length >=1 && <div>
+    <div>
       <HiShoppingCart size= {18}/> 
       {cart.length && <span>({TotalItem()})</span>}
-      </div>}
+      </div>
     </>
     
   )

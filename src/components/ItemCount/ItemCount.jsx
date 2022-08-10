@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './ItemCount.css';
+import swal from 'sweetalert';
+
 
 const ItemCount = ({ onAdd, stock}) => {
     const initial = 1;
     console.log(stock)
-    // const stock = 7; 
   
-    //hook de estado
     const [contador, setContador] = useState(initial);
   
     const addProduct = (num) => {
@@ -26,15 +26,16 @@ const ItemCount = ({ onAdd, stock}) => {
           <button
             className="count-container-button"
             onClick={() => addProduct(+1)}
-            disabled={contador === stock ? true : null} //puedo poner el alert aca? alert('stock maximo permitido ${stock}')
+            disabled={contador === stock ? true : null}
           > + </button>
         </div>
   
         <button
           className="button-primary"
           onClick={() => {onAdd(contador)}}
-          disabled={stock === 0 ? true : null}
-        >Añadir al carrito</button> 
+          disabled={stock === 0 ? true : null }
+        >Añadir al carrito</button>
+
       </div>
     );
   };

@@ -10,7 +10,6 @@ const MovieContainer = () => {
   const [dataMovie, setDataMovie] = useState([])
   const params = useParams()
 
-  // const [error, setError] = useState("")
   const [productosFiltrados, setProductosFiltrados] = useState([])
 
   useEffect(() => {
@@ -22,8 +21,6 @@ const MovieContainer = () => {
         const querySnapshot = await getDocs(q);
         const productos = []
         querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          // console.log(doc.id, " => ", doc.data());
           productos.push({id: doc.id, ...doc.data()})
         });
 
@@ -58,8 +55,6 @@ return (
           <ItemList info={productosFiltrados}/> 
         </div>
       </div>
-      {/* <ItemCount onAdd={onAdd} />
-      <ItemCount onAdd={onAdd} /> */}
     </div>
   </>
 );

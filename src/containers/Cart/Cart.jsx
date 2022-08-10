@@ -2,21 +2,21 @@ import React, { useState } from 'react'
 import { useContext } from 'react'
 import { Shop } from '../../context/ShopContext'
 import "./Cart.css";
-import { useNavigate, Link } from 'react-router-dom';
-import ordenGenerada from '../../Utils/GenerarOrden';
-import guardarOrden from '../../Utils/GuardarOrden';
+import { useNavigate } from 'react-router-dom';
+import CartForm from '../../components/CartForm/CartForm';
+
 
 
 const Cart = () => {
   const {cart, removeItem, clearCart, TotalPrice, TotalItem, OneTotalPrice} = useContext(Shop);
   console.log(cart);
 
-const precio = TotalPrice();
+  const [view, setView] = useState(false);
 
-  const confirmarOrden = async () => {
-    const orden = ordenGenerada("Agus", "calle falsa 123", cart, precio); //tengo que usar la OneTotalPrice
-    guardarOrden(cart, orden);
-  }
+
+const confirmarOrden = () => {
+  setView(true);
+};
 
   const navigate = useNavigate();
 
@@ -26,12 +26,12 @@ const precio = TotalPrice();
   
   return (
     <>
-    {cart.length >= 1 && <div className='carrito-prod'>
+    {(cart.length >= 1 && view === false) && <div className='carrito-prod'>
     <div className='titulo-limpiar'><h5>Carrito de compras</h5> 
     <button className='btn btn-outline-success' onClick = {() => clearCart () }> Limpiar carrito </button></div>
 
 
-      <table class="table">
+      <table className="table">
           <thead>
             <tr>
               <th scope="col">Tus productos seleccionados</th>
@@ -43,7 +43,7 @@ const precio = TotalPrice();
           </thead>
           <tbody>
             {cart.map((producto) => (
-              <tr>
+              <tr key={producto}>
                 <td>{producto.nombre}</td>
                 <td>{producto.quantity}</td>
                 <td>${producto.precio}</td>
@@ -58,7 +58,7 @@ const precio = TotalPrice();
         </table>
 <hr/>
 <br/>
-        <table class="table">
+        <table className="table">
           <thead>
             <tr>
               <th scope="col">Total de productos</th>
@@ -74,10 +74,12 @@ const precio = TotalPrice();
             </tr>
           </tbody>
         </table>
-        <div className="d-flex justify-content-end"><button className="btn btn-outline-success col-2 " onClick={() => back ()}>Finaliza tu compra</button>
+        <div className="d-flex justify-content-end">
         <button className="btn btn-outline-success" onClick={confirmarOrden}>Confirmar compra</button></div>
-        
-  </div> } {
+  </div> }  
+  {view === true && <CartForm/>}
+
+  {
     !cart.length >= 1 &&
     <>
       <p>No hay items agregados, regresá</p>
@@ -90,5 +92,4 @@ const precio = TotalPrice();
     
   )
 }
-/*producto.id*/
 export default Cart

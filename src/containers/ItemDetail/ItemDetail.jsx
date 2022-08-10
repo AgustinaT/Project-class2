@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import "./ItemDetail.css";
 import { useContext } from "react";
 import { Shop } from "../../context/ShopContext";
-//va a tener TODOS los datos del producto
 
 const ItemDetail = ({ product }) => {
   const navigate = useNavigate();
@@ -24,7 +23,6 @@ const ItemDetail = ({ product }) => {
   };
   console.log(qtyAdded);
   console.log(product);
-  //estamos obteniendo bien la info?
   console.log(product.stock);
   return (
     <div className="container-detail">
