@@ -13,6 +13,7 @@
 .item-list-cols{
     display: flex;
     width: 100%;
+
 }
 .item-list-cols > div{
     width: 100%;

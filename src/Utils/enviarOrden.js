@@ -34,9 +34,8 @@ const enviarOrden = (cart, order) => {
         } 
         else {
           outOfStock.push(prod);
+          alert("productos fuera de stock:");
         }
-        alert("productos fuera de stock:");
-        
       }
     );
   });

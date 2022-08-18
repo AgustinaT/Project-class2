@@ -11,12 +11,13 @@
     overflow: hidden; /*Si se sale de los limites del contenido*/
     justify-content: center;
     /* width: 100%; ctrl + k + c*/ 
-    height:20rem;
+    height: 20rem;
+    
 }
 /* agregue 100% para q cubran todo el alto y el ancho del div*/
 .imagenes > img {
     width: 100%;
-    height:100%
+    height: 100%;
 }
 
 .Item{

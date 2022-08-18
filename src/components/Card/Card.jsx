@@ -13,7 +13,7 @@ const card = () => {
     <h5 className="card-title">Orden de compra</h5>
     <h6 className="card-subtitle mb-2 text-muted">Tu compra fue exitosa!</h6>
     <p className="card-text">Te avisaremos cuando tu compra este en camino</p>
-    <Link to="/" class="btn btn-outline-success">Seguir comprando</Link>
+    <Link to="/" className="btn btn-outline-success">Seguir comprando</Link>
   </div>
   </div>
 </div>

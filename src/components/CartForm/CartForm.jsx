@@ -27,6 +27,15 @@ const CartForm = () => {
   const [errorCodigo, setErrorCodigo] = useState("");
   const [stateCodigo, setStateCodigo] = useState(false);
 
+  const [errorDetallePago, setErrorDetallePago] = useState("");
+  const [stateDetallePago, setStateDetallePago] = useState(false);
+
+  const [errorCardNumber, setErrorCardNumber] = useState("");
+  const [stateCardNumber, setStateCardNumber] = useState(false);
+  
+  const [errorCvv, setErrorCvv] = useState("");
+  const [stateCvv, setStateCvv] = useState(false);
+
   const [buttons] = useState({
     submit: "Pagar",
     back: "Anterior",
@@ -147,16 +156,64 @@ if(isValidated) {
     );
   }; 
 
-  const handlePay =()=>{
-    const dataOrder = {
-      buyer: values,
-      items: cart,
-      totalPrice: getTotal(),
-      date: new Date().toLocaleString(),
-    };
-    enviarOrden(cart, dataOrder);
-    clearCart();
-    navigate("/card"); 
+  const handlePay =(e) => {
+    e.preventDefault();
+
+//validacion Detalle Pago //
+
+if (cardholderName.trim().length < 1) {
+  setErrorDetallePago("La casilla no puede estar vacia") 
+  setStateDetallePago(true);
+}
+else {
+  setStateDetallePago(false);
+}
+
+//Validacion del numero de tarjeta //
+
+if (cardNumber.trim().length < 1) {
+  setErrorCardNumber("La casilla no puede estar vacia") 
+  setStateCardNumber(true);
+}
+else {
+  setStateCardNumber(false);
+}
+
+
+//Validacion CVV //
+
+if (cvv.trim().length < 1) {
+  setErrorCvv("La casilla no puede estar vacia") 
+  setStateCvv(true);
+}
+else {
+  setStateCvv(false);
+}
+
+
+const confirmOtherForm = () => {
+  if (!stateDetallePago && !stateCardNumber && !stateCvv) {
+    return false; 
+  } 
+  else {
+    return true; 
+  }
+};
+
+const isValid = confirmOtherForm();
+if(isValid) {
+  const dataOrder = {
+    buyer: values,
+    items: cart,
+    totalPrice: getTotal(),
+    date: new Date().toLocaleString(),
+  };
+
+  enviarOrden(cart, dataOrder);
+  clearCart();
+  navigate("/card"); 
+}
+
   }
 
   return (
@@ -223,6 +280,8 @@ if(isValidated) {
                 name="number"
                 onChange={handleInputChange}
                 value={number}
+                minLength="10"
+                maxLength="10"
               />
               {
               stateNumber &&  <p style={{color:"red"}}>{errorNumber}</p> 
@@ -234,7 +293,9 @@ if(isValidated) {
                 placeholder="Código postal"
                 name="CP"
                 onChange={handleInputChange}
-                value={CP }
+                value={CP}
+                minLength="4"
+                maxLength="6"
               />
               {
               (stateCodigo) &&  <p style={{color:"red"}}>{errorCodigo}</p> 
@@ -254,7 +315,6 @@ if(isValidated) {
                 <button
                   type="submit"
                   className="btn btn-outline-success mt-2 mx-auto"
-               
                 >
                   Siguiente
                 </button>
@@ -265,22 +325,34 @@ if(isValidated) {
           <>
             <div className="form-container col-8 mx-auto">
               <h6 className="detalle-pago text-center">Detalle de pago</h6>
+
+              
               <input
                 type="text"
                 className="form-control mt-2"
                 placeholder="Titular de la tarjeta"
                 name="cardholderName"
-                onChange={(e) => handleInputChange(e)}
-                value={cardholderName || ""}
+                onChange={handleInputChange}
+                value={cardholderName}
               />
+              {
+              (stateDetallePago) &&  <p style={{color:"red"}}>{errorDetallePago}</p> 
+              }
+
               <input
-                type="text"
+                type="number"
                 className="form-control mt-2"
                 placeholder="Número de tarjeta"
                 name="cardNumber"
-                onChange={(e) => handleInputChange(e)}
-                value={cardNumber || ""}
+                onChange={handleInputChange}
+                value={cardNumber}
+                minLength="16"
+                maxLength="16"
               />
+              {
+              (stateCardNumber) &&  <p style={{color:"red"}}>{errorCardNumber}</p> 
+              }
+
               <div className="credit-card-data">
                 <input
                   type="month"
@@ -288,32 +360,39 @@ if(isValidated) {
                   className="form-control mt-2"
                   placeholder="Fecha de caducidad"
                   name="expiryDate"
-                  onChange={(e) => handleInputChange(e)}
-                  value={expiryDate || ""}
+                  onChange={handleInputChange}
+                  value={expiryDate}
+                  required
                 />
                 <input
                   type="text"
                   className="form-control mt-2 my-2"
                   placeholder="CVV"
                   name="cvv"
-                  onChange={(e) => handleInputChange(e)}
-                  value={cvv || ""}
+                  onChange={handleInputChange}
+                  value={cvv}
+                  maxLength="3"
                 />
+                {
+              (stateCvv) &&  <p style={{color:"red"}}>{errorCvv}</p> 
+              }
+
+
               </div>
               <div className="button-container">
                 <button
-                  type="button"
+                  type="submit"
                   className="btn btn-outline-success mx-0"
                   value={buttons.back}
                   onClick={() => setStep(true)}
                 >Atras</button>
                 <button
-                  type="button"
+                  type="submit"
                   className="btn btn-outline-success"
-                  value={buttons.submit}
                   onClick={handlePay}
                 >Pagar</button>
               </div>
+             
             </div>
           </>
         )}
